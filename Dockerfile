@@ -16,6 +16,8 @@ RUN apk --no-cache add \
         mariadb-connector-c \
         openssl && \
     git clone https://github.com/atech/postal.git /opt/postal && \
+    cd /opt/postal && \
+    git reset --hard b264c5b && \
     gem install bundler && \
     gem install procodile && \
     gem install tzinfo-data && \
