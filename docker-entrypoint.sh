@@ -24,10 +24,10 @@ if [ ! -f $LETS_ENCRYPT_KEY_PATH ]; then
     # Generate Let's Encrypt private key
     echo "==> Generating Let's Encrypt private key - this should be made persistent!"
     openssl genrsa -out $LETS_ENCRYPT_KEY_PATH 2048
-fi
 
-# Ensure account is registered with Let's Encrypt
-/opt/postal/bin/postal register-lets-encrypt "$LETS_ENCRYPT_EMAIL"
+    # Register account with Let's Encrypt
+    /opt/postal/bin/postal register-lets-encrypt "$LETS_ENCRYPT_EMAIL"
+fi
 
 if [ -z "$MYSQL_HOSTNAME" ] || [ -z "$MYSQL_USER" ] || [ -z "$MYSQL_PASSWORD" ] || [ -z "$MYSQL_DATABASE" ]; then
     echo "ERROR: One or more MySQL environment variables were not defined. Please check your configuration."
