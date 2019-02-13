@@ -1,0 +1,66 @@
+web:
+  # The host that the management interface will be available on
+  host: {{ POSTAL_HOSTNAME }}
+  # The protocol that requests to the management interface should happen on
+  protocol: http
+
+web_server:
+  bind_address: 0.0.0.0
+
+fast_server:
+  # Dedicated web server for click & open tracking on emails
+  enabled: true
+  bind_address: 0.0.0.0
+
+general:
+  # This can be changed to allow messages to be sent from multiple IP addresses
+  use_ip_pools: false
+
+main_db:
+  # Specify the connection details for your MySQL database
+  host: {{ MYSQL_HOSTNAME }}
+  username: {{ MYSQL_USER }}
+  password: {{ MYSQL_PASSWORD }}
+  database: {{ MYSQL_DATABASE }}
+
+message_db:
+  # Specify the connection details for your MySQL server that will be house the
+  # message databases for mail servers.
+  host: {{ MYSQL_HOSTNAME }}
+  username: {{ MYSQL_USER }}
+  password: {{ MYSQL_PASSWORD }}
+  prefix: {{ MYSQL_DATABASE }}
+
+rabbitmq:
+  # Specify the connection details for your RabbitMQ server.
+  host: {{ RABBITMQ_HOSTNAME }}
+  username: {{ RABBITMQ_DEFAULT_USER }}
+  password: {{ RABBITMQ_DEFAULT_PASS }}
+  vhost: {{ RABBITMQ_DEFAULT_VHOST }}
+
+dns:
+  # Specifies the DNS record that you have configured. Refer to the documentation at
+  # https://github.com/atech/postal/wiki/Domains-&-DNS-Configuration for further
+  # information about these.
+  mx_records:
+    - {{ DNS_SMTP_HOSTNAME }}
+  smtp_server_hostname: {{ DNS_SMTP_HOSTNAME }}
+  spf_include: {{ DNS_SPF_INCLUDE }}
+  return_path: {{ DNS_RETURN_PATH }}
+  route_domain: {{ DNS_ROUTE_DOMAIN }}
+  track_domain: {{ DNS_TRACK_DOMAIN }}
+
+smtp:
+  # Specify an SMTP server that can be used to send messages from the Postal management
+  # system to users. You can configure this to use a Postal mail server once the
+  # your installation has been set up.
+  host: {{ SMTP_HOSTNAME }}
+  port: {{ SMTP_PORT }}
+  username: {{ SMTP_USERNAME }}
+  password: {{ SMTP_PASSWORD }}
+  from_name: {{ SMTP_FROM_NAME }}
+  from_address: {{ SMTP_FROM_ADDRESS }}
+
+rails:
+  # Random string unique to your installation.
+  secret_key: {{ POSTAL_SECRET_KEY }}
